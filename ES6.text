@@ -1,0 +1,125 @@
+
+
+1:js 内置基本类型:{
+    string 类型
+    number 类型
+    boolean 类型
+    null 类型
+    undefined 类型
+    symbol 类型
+    object 类型
+}
+
+特点：
+
+基本数据类型的值是按值访问的
+基本类型的值是不可变的
+基本类型的比较是它们的值的比较
+基本类型的变量是存放在栈内存（Stack）里的
+
+
+
+引用类型（object 子类型）
+例:
+object Object 类型
+object Array 类型
+object Date 类型
+object RegExp 类型
+object Function 类型
+object Boolean 类型
+object Number 类型
+object String 类型
+object Set 类型
+object Map 类型
+… 其他各种内置类型以及各种自定义类型
+
+
+特点：
+
+引用类型的值是按引用访问的
+引用类型的值是可变的
+引用类型的比较是引用的比较
+引用类型的值是保存在堆内存（Heap）中的对象（Object） 与其他编程语言不同，JavaScript 不能直接操作对象的内存空间（堆内存）。
+
+图解：
+
+栈内存中保存了变量标识符和指向堆内存中该对象的指针
+堆内存中保存了对象的内容
+
+--------------------------------------
+2:语法：变量声明与赋值;
+
+ES6前:  var;
+ES6: let const
+
+例子：let [a, b, c] = [1, 2, 3];
+
+------------------------------
+数组：
+Array.from()方法用于将两类对象转为真正的数组
+Array.find()用于找出第一个符合条件的数组成员.
+它的参数是一个回调函数，所有数组成员依次执行该回调函数，直到找出第一个返回值为true的成员，然后返回该成员。如果没有符合条件的成员，则返回undefined。
+[1, 5, 10, 15].find(function(value, index, arr) {
+  return value > 9;
+}) // 10
+
+Array.findIndex()返回第一个符合条件的数组成员的位置，如果所有成员都不符合条件，则返回-1。
+[1, 5, 10, 15].findIndex(function(value, index, arr) {
+  return value > 9;
+}) // 2
+
+------------------------------
+Set
+
+new Set();去重
+
+const s = new Set();
+
+[2, 3, 5, 4, 5, 2, 2].forEach(x => s.add(x));
+
+for (let i of s) {
+  console.log(i);
+}
+// 2 3 5 4
+
+-----------------------------
+Map
+
+JavaScript 的对象（Object），本质上是键值对的集合（Hash 结构），但是传统上只能用字符串当作键。
+let map = new Map()
+  .set(1, 'a')
+  .set(2, 'b')
+  .set(3, 'c');
+map.forEach(function(value, key, map) {
+  console.log(map, key, value);
+});
+--------------
+for...of循环可以代替数组实例的forEach方法。
+
+const arr = ['red', 'green', 'blue'];
+
+arr.forEach(function (element, index) {
+  console.log(element); // red green blue
+  console.log(index);   // 0 1 2
+});
+for (let a in arr) {
+  console.log(a); // red green blue
+}
+
+for (let a of arr) {
+  console.log(a); // red green blue
+}
+
+------------------
+（）=>{} 函数
+
+function(i){ return i + 1; } //ES5
+(i) => i + 1 //ES6
+
+function(x, y) {
+    x++;
+    y--;
+    return x + y;
+}
+(x, y) => {x++; y--; return x+y}
+
