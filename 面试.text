@@ -1,0 +1,125 @@
+面试题目：
+1：js6个基础数据类型
+string number boole  null undefind
+
+判断基础数据类型 typeOf
+
+
+2：数组去重
+1：循环 去重
+var array = [1, 1, '1', '1'];
+
+function unique(array) {
+    // res用来存储结果
+    var res = [];
+    for (var i = 0, arrayLen = array.length; i < arrayLen; i++) {
+        for (var j = 0, resLen = res.length; j < resLen; j++ ) {
+            if (array[i] === res[j]) {
+                break;
+            }
+        }
+        // 如果array[i]是唯一的，那么执行完循环，j等于resLen
+        if (j === resLen) {
+            res.push(array[i])
+        }
+    }
+    return res;
+}
+
+console.log(unique(array)); // [1, "1"]；
+
+2：indexOf去重
+var array = [1, 1, '1'];
+
+function unique(array) {
+    var res = [];
+    for (var i = 0, len = array.length; i < len; i++) {
+        var current = array[i];
+        if (res.indexOf(current) === -1) {
+            res.push(current)
+        }
+    }
+    return res;
+}
+
+console.log(unique(array));
+
+
+3：类型转换
+
+
+4：闭包
+
+闭包 = 函数 + 函数能够访问的自由变量
+
+自由变量是指在函数中使用的，但既不是函数参数也不是函数的局部变量的变量。
+
+var a = 1;
+
+function foo() {
+    console.log(a);
+}
+
+foo();
+
+for (var i = 0; i < 3; i++) {
+    return function(){
+        console.log(i);
+    }
+  })();
+}
+
+
+5：this 的问题
+
+6：react  : 1：路由传参 2：redux 3：生命周期
+
+    a:路由穿参数{
+        1：定义路由：<Route path='/user/:data' component={UserPage}></Route>  ；
+        2：定义传参：
+                var data = {id:3,name:sam,age:36};
+                data = JSON.stringify(data);
+                var path = `/user/${data}`;
+
+        3：获取数据：
+                var data = JSON.parse(this.props.route.params.data);
+    }
+
+    b:redux{
+        是react 维护的模块间通信的工具；
+        action 这些是由模块发起的通信请求，其实就是一个数据对象。
+
+        view ---> action ---> reducer ---> store(state) ---> view
+        如果放入一个web app中，首先store(state)决定了view，然后用户与view的交互会产生action，这些action会触发reducer因而改变state，然后state的改变又造成了view的变化。
+    }
+    c:生命周期{
+        1：装载组件触发--componentWillMount
+        只会在装载之前调用一次，在 render 之前调用，你可以在这个方法里面调用 setState 改变状态，并且不会导致额外调用一次 render
+        2：componentDidMount
+        只会在装载完成之后调用一次，在 render 之后调用，从这里开始可以通过 ReactDOM.findDOMNode(this) 获取到组件的 DOM 节点。
+        3:更新组件触发render();
+            componentWillReceiveProps
+            shouldComponentUpdate
+            componentWillUpdate
+            componentDidUpdate
+            这些方法不会在首次 render 组件的周期调用
+        4:卸载组件触发
+            componentWillUnmount
+    }
+
+
+7:vue :组件传参 ，生命周期，
+8:原型链，
+9： null 和 underfund 的区别
+声明没有赋值 underfined
+没有声明 null
+
+当一个变量已经声明，但没有赋值时，该变量的值是undefined。
+如果一个函数的执行结果被赋值给一个变量，但是这个函数却没有返回任何值，那么该变量的值是undefined。
+要检查它，需要使用严格相等（===）；或者使用typeof，它会返回'undefined'字符串。
+请注意，不能使用非严格相等（==）来检查，因为如果变量值为null，使用非严格相等也会返回true。
+
+
+
+
+
